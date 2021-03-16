@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class PlayerClothesManager : MonoBehaviour
 {
@@ -15,7 +16,12 @@ public class PlayerClothesManager : MonoBehaviour
     {
         if (_clothingPieces == null)
             _clothingPieces = new List<ClothingPiece>();
+    }
 
+    // I need this to execute once the object is created after every other object.
+    private IEnumerator Start()
+    {
+        yield return new WaitForEndOfFrame();
         OnInventoryChanged?.Invoke(_clothingPieces);
     }
 
@@ -31,7 +37,7 @@ public class PlayerClothesManager : MonoBehaviour
 
     private void OnDisable()
     {
-        UiInventory.OnOutfitSelected += ChangeClothes;
+        UiInventory.OnOutfitSelected -= ChangeClothes;
     }
 
     public void ChangeClothes(ClothingPiece clothing)

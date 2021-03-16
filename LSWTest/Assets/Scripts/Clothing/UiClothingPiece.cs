@@ -10,6 +10,8 @@ public class UiClothingPiece : MonoBehaviour
 
     public event Action<ClothingPiece> OnSelected;
 
+    public ClothingPiece ClothingPiece { get => _clothingPiece; set => value = _clothingPiece; }
+
     private void OnEnable()
     {
         _icon.sprite = _clothingPiece.Icon;
