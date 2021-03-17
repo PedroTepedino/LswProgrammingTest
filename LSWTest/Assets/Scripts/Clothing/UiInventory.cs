@@ -42,8 +42,6 @@ public class UiInventory : MonoBehaviour
 
     public void OpenInventory()
     {
-        
-
         if (_uiVisualObject.activeInHierarchy)
         {
             _uiVisualObject.SetActive(false);

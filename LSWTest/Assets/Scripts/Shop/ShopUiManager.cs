@@ -1,11 +1,30 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ShopUiManager : MonoBehaviour
 {
     [SerializeField] private GameObject _visualObject;
 
     [SerializeField] private List<UiClothingPiece> _uiClothings;
+
+    public event Action<ClothingPiece> OnOutfitSelected;
+
+    private void OnEnable()
+    {
+        foreach (var ui in _uiClothings)
+        {
+            ui.OnSelected += ListenOnClothingSelected;
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var ui in _uiClothings)
+        {
+            ui.OnSelected -= ListenOnClothingSelected;
+        }
+    }
 
     public void Open()
     {
@@ -15,6 +34,11 @@ public class ShopUiManager : MonoBehaviour
     public void Close()
     {
         _visualObject.SetActive(false);
+    }
+
+    private void ListenOnClothingSelected(ClothingPiece outfit)
+    {
+        OnOutfitSelected?.Invoke(outfit);
     }
 
     public void UpdateUi(List<ClothingPiece> inventoryItems)

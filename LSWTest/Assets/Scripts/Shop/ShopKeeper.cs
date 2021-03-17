@@ -15,6 +15,19 @@ public class ShopKeeper : MonoBehaviour, IShop
 
     public bool IsOpen => _uiVisualObject.activeInHierarchy;
 
+    private void OnEnable()
+    {
+        _buyUi.OnOutfitSelected += Buy;
+        _sellUi.OnOutfitSelected += Sell;
+    }
+
+    private void OnDisable()
+    {
+        _buyUi.OnOutfitSelected -= Buy;
+        _sellUi.OnOutfitSelected -= Sell;
+
+    }
+
     public void Open(PlayerClothesManager player)
     {
         _player = player;
@@ -39,6 +52,7 @@ public class ShopKeeper : MonoBehaviour, IShop
         _availableClothes.Remove(Item);
         _player.AddItem(Item);
         _buyUi.UpdateUi(_availableClothes);
+        _sellUi.UpdateUi(_player.ClothingPieces);
     }
 
     public void Sell(ClothingPiece Item)
@@ -46,5 +60,6 @@ public class ShopKeeper : MonoBehaviour, IShop
         _availableClothes.Add(Item);
         _player.RemoveItem(Item);
         _buyUi.UpdateUi(_availableClothes);
+        _sellUi.UpdateUi(_player.ClothingPieces);
     }
 }
