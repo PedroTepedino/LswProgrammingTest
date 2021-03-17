@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class PlayerAnimationManager : MonoBehaviour
     private readonly int _isMovingId = Animator.StringToHash("Moving");
     private readonly int _xVelocityId = Animator.StringToHash("XVelocity");
     private readonly int _yVelocityId = Animator.StringToHash("YVelocity");
+
+    private IShop _shopInRange;
 
     public bool IsMoving => _rigidbody2D.velocity.magnitude > 0.1f;
 
@@ -25,7 +28,9 @@ public class PlayerAnimationManager : MonoBehaviour
     }
 
     private void LateUpdate()
-    { 
+    {
+        if (Time.timeScale < 0.1) return;
+
         _animator.SetBool(_isMovingId, IsMoving);
 
         if (IsMoving)
@@ -35,10 +40,14 @@ public class PlayerAnimationManager : MonoBehaviour
         }
     }
 
+    
+
     private void ListenOnPlayerOutfitChanged(ClothingPiece clothing)
     {
         _animator.runtimeAnimatorController = clothing.Clothes;
     }
+
+    
 
     private void OnValidate()
     {

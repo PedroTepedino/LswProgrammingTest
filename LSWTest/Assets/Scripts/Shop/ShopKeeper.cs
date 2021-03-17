@@ -1,59 +1,50 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System;
 
-public class ShopKeeper : MonoBehaviour
+public class ShopKeeper : MonoBehaviour, IShop
 {
-    [SerializeField] private GameObject _interactionButtonUi;
-    private bool _playerInRange = false;
+    [SerializeField] private GameObject _uiVisualObject;
+    [SerializeField] private ShopUiManager _buyUi;
+    [SerializeField] private ShopUiManager _sellUi;
+    [SerializeField] private List<ClothingPiece> _availableClothes;
 
-    [SerializeField] private ShopUiManager _ui;
+    private PlayerClothesManager _player;
 
-    private Player _player = null;
+    public List<ClothingPiece> AvailableClothes => _availableClothes;
 
-    private void OnEnable()
+    public bool IsOpen => _uiVisualObject.activeInHierarchy;
+
+    public void Open(PlayerClothesManager player)
     {
-        InputManager.OnInteract += ListenOnInteraction;
+        _player = player;
+        _sellUi.UpdateUi(_player.ClothingPieces);
+        _buyUi.UpdateUi(_availableClothes);
+        _sellUi.Open();
+        _buyUi.Open();
+        _uiVisualObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-    private void OnDisable()
+    public void Close()
     {
-        InputManager.OnInteract -= ListenOnInteraction;
+        _sellUi.Close();
+        _buyUi.Close();
+        _uiVisualObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Buy(ClothingPiece Item)
     {
-        _player = collision.gameObject.GetComponent<Player>();
-
-        if (_player)
-        {
-            _interactionButtonUi.SetActive(true);
-            _playerInRange = true;
-        }
+        _availableClothes.Remove(Item);
+        _player.AddItem(Item);
+        _buyUi.UpdateUi(_availableClothes);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void Sell(ClothingPiece Item)
     {
-        if (collision.gameObject == _player.gameObject)
-        {
-            _interactionButtonUi.SetActive(false);
-            _playerInRange = false;
-        }
-    }
-
-    public void ListenOnInteraction()
-    {
-        if (_playerInRange)
-        {
-            _ui.Open();
-        }
-    }
-
-    private void OnValidate()
-    {
-        if (!this.GetComponent<Collider2D>())
-        {
-            var collider = this.gameObject.AddComponent<BoxCollider2D>();
-            collider.isTrigger = true;
-        }
+        _availableClothes.Add(Item);
+        _player.RemoveItem(Item);
+        _buyUi.UpdateUi(_availableClothes);
     }
 }

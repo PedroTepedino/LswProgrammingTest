@@ -1,16 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //// Parameters
     [SerializeField] private float _moveSpeed;
 
-    //// Unity Components
     [SerializeField] private Rigidbody2D _rigidbody;
 
-    //// Custom Components
     private Mover _mover;
     
     private void Awake()
@@ -31,7 +26,6 @@ public class Player : MonoBehaviour
         }
     }
 }
-
 
 public class Mover
 {

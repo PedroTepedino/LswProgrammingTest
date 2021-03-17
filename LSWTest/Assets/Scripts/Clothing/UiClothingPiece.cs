@@ -10,7 +10,7 @@ public class UiClothingPiece : MonoBehaviour
 
     public event Action<ClothingPiece> OnSelected;
 
-    public ClothingPiece ClothingPiece { get => _clothingPiece; set => value = _clothingPiece; }
+    public ClothingPiece ClothingPiece => _clothingPiece;
 
     private void OnEnable()
     {
@@ -20,6 +20,12 @@ public class UiClothingPiece : MonoBehaviour
     public void Selected()
     {
         OnSelected?.Invoke(_clothingPiece);
+    }
+
+    public void ChangeClothingPiece(ClothingPiece newClothingPiece)
+    {
+        _clothingPiece = newClothingPiece;
+        _icon.sprite = _clothingPiece.Icon;
     }
 
     private void OnValidate()

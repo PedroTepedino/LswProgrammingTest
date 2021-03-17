@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
+
 public class PlayerClothesManager : MonoBehaviour
 {
     [SerializeField] private List<ClothingPiece> _clothingPieces;
@@ -11,6 +12,10 @@ public class PlayerClothesManager : MonoBehaviour
 
     public event Action<ClothingPiece> OnCurrentOutfitChanged;
     public static event Action<List<ClothingPiece>> OnInventoryChanged;
+
+    public List<ClothingPiece> ClothingPieces => _clothingPieces;
+
+    private IShop _shopInRange = null;
 
     private void Awake()
     {
@@ -33,11 +38,26 @@ public class PlayerClothesManager : MonoBehaviour
         }
 
         UiInventory.OnOutfitSelected += ChangeClothes;
+        InputManager.OnInteract += OnInteraction;
     }
 
     private void OnDisable()
     {
         UiInventory.OnOutfitSelected -= ChangeClothes;
+        InputManager.OnInteract -= OnInteraction;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _shopInRange = collision.gameObject.GetComponent<IShop>();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<IShop>() == _shopInRange)
+        {
+            _shopInRange = null;
+        }
     }
 
     public void ChangeClothes(ClothingPiece clothing)
@@ -56,5 +76,22 @@ public class PlayerClothesManager : MonoBehaviour
     {
         _clothingPieces.Remove(item);
         OnInventoryChanged?.Invoke(_clothingPieces);
+    }
+
+    private void OnInteraction()
+    {
+        if (_shopInRange != null)
+        {
+            if (Time.timeScale > 0.1f)
+            {
+                _shopInRange.Open(this);
+                return;
+            }
+            
+            if (_shopInRange.IsOpen)
+            {
+                _shopInRange.Close();
+            }
+        }
     }
 }

@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6908974851489042581, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
       propertyPath: m_Name
-      value: ClothiungUIShop
+      value: ClothiungUIShop Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6908974851558484870, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
       propertyPath: m_text
@@ -101,7 +101,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6908974852338829882, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908974852338829882, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6227666358491743201}
+    - target: {fileID: 6908974852338829882, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UiClothingPiece, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908974852338829882, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Selected
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908974852338829882, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
+--- !u!114 &6227666358491743201 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6908974851489042578, guid: 9e6b82d8e2c17774198b0929b0958180, type: 3}
+  m_PrefabInstance: {fileID: 688067277560583027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4883d4f90e8939745a174634914ce7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

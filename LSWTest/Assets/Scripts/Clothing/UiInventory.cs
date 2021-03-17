@@ -42,7 +42,18 @@ public class UiInventory : MonoBehaviour
 
     public void OpenInventory()
     {
-        _uiVisualObject.SetActive(!_uiVisualObject.activeInHierarchy);
+        
+
+        if (_uiVisualObject.activeInHierarchy)
+        {
+            _uiVisualObject.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else if (Time.timeScale > 0.1f)
+        {
+            _uiVisualObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     private void ListenOnClothingSelected(ClothingPiece clothingPiece)
@@ -52,13 +63,12 @@ public class UiInventory : MonoBehaviour
 
     private void UpdateUi(List<ClothingPiece> inventoryItems)
     {
-        Debug.Log($"UpdateInventory inventory items {inventoryItems.Count} / Ui count {_uiClothingPieces.Count}");
         for(int i = 0; i < _uiClothingPieces.Count ; i++)
         {
             if (i < inventoryItems.Count)
             {
                 _uiClothingPieces[i].gameObject.SetActive(true);
-                _uiClothingPieces[i].ClothingPiece = inventoryItems[i];
+                _uiClothingPieces[i].ChangeClothingPiece(inventoryItems[i]);
             }
             else
             {

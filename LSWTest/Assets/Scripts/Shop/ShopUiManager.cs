@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopUiManager : MonoBehaviour
@@ -18,8 +17,19 @@ public class ShopUiManager : MonoBehaviour
         _visualObject.SetActive(false);
     }
 
-    private void UpdateUi()
+    public void UpdateUi(List<ClothingPiece> inventoryItems)
     {
-
+        for (int i = 0; i < _uiClothings.Count; i++)
+        {
+            if (i < inventoryItems.Count)
+            {
+                _uiClothings[i].gameObject.SetActive(true);
+                _uiClothings[i].ChangeClothingPiece(inventoryItems[i]);
+            }
+            else
+            {
+                _uiClothings[i].gameObject.SetActive(false);
+            }
+        }
     }
 }
