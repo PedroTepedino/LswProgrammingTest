@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
@@ -12,8 +9,6 @@ public class PlayerAnimationManager : MonoBehaviour
     private readonly int _isMovingId = Animator.StringToHash("Moving");
     private readonly int _xVelocityId = Animator.StringToHash("XVelocity");
     private readonly int _yVelocityId = Animator.StringToHash("YVelocity");
-
-    private IShop _shopInRange;
 
     public bool IsMoving => _rigidbody2D.velocity.magnitude > 0.1f;
 
@@ -39,15 +34,19 @@ public class PlayerAnimationManager : MonoBehaviour
             _animator.SetFloat(_yVelocityId, _rigidbody2D.velocity.y);
         }
     }
-
     
-
     private void ListenOnPlayerOutfitChanged(ClothingPiece clothing)
     {
-        _animator.runtimeAnimatorController = clothing.Clothes;
-    }
+        var isMoving = _animator.GetBool(_isMovingId);
+        var xVelocity = _animator.GetFloat(_xVelocityId);
+        var yVelocity = _animator.GetFloat(_yVelocityId);   
 
-    
+        _animator.runtimeAnimatorController = clothing.Clothes;
+
+        _animator.SetBool(_isMovingId, isMoving);
+        _animator.SetFloat(_xVelocityId, xVelocity);
+        _animator.SetFloat(_yVelocityId, yVelocity);
+    }
 
     private void OnValidate()
     {
