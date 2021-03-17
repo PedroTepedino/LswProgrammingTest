@@ -3,9 +3,9 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-
 public class PlayerClothesManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _interactionPopup = null;
     [SerializeField] private List<ClothingPiece> _clothingPieces;
 
     private ClothingPiece _currentOutfit;
@@ -38,18 +38,25 @@ public class PlayerClothesManager : MonoBehaviour
         }
 
         UiInventory.OnOutfitSelected += ChangeClothes;
-        InputManager.OnInteract += OnInteraction;
+        InputManager.OnInteract += ListenOnInteraction;
+        InputManager.OnEscape += ListenOnEscape;
     }
 
     private void OnDisable()
     {
         UiInventory.OnOutfitSelected -= ChangeClothes;
-        InputManager.OnInteract -= OnInteraction;
+        InputManager.OnInteract -= ListenOnInteraction;
+        InputManager.OnEscape -= ListenOnEscape;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _shopInRange = collision.gameObject.GetComponent<IShop>();
+        
+        if (_shopInRange != null)
+        {
+            TurnPopuopOn(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -57,6 +64,8 @@ public class PlayerClothesManager : MonoBehaviour
         if (collision.gameObject.GetComponent<IShop>() == _shopInRange)
         {
             _shopInRange = null;
+
+            TurnPopuopOn(false);
         }
     }
 
@@ -78,7 +87,7 @@ public class PlayerClothesManager : MonoBehaviour
         OnInventoryChanged?.Invoke(_clothingPieces);
     }
 
-    private void OnInteraction()
+    private void ListenOnInteraction()
     {
         if (_shopInRange != null)
         {
@@ -92,6 +101,22 @@ public class PlayerClothesManager : MonoBehaviour
             {
                 _shopInRange.Close();
             }
+        }
+    }
+
+    private void ListenOnEscape()
+    {
+        if (_shopInRange != null && _shopInRange.IsOpen)
+        {
+            _shopInRange.Close();
+        }
+    }
+
+    private void TurnPopuopOn(bool turnOn)
+    {
+        if (_interactionPopup != null)
+        {
+            _interactionPopup.SetActive(turnOn);
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c3a2b1fc8224e44b2065f62c4e2b26, type: 3}
   m_Name: BasicOutfit
   m_EditorClassIdentifier: Assembly-CSharp::Clothe
-  _icon: {fileID: 21300000, guid: 33c087e967b232549b0daa7d7ac50a48, type: 3}
+  _icon: {fileID: 299848946581732572, guid: c941275441bb4444c8f371ec7e12c76d, type: 3}
   _clothes: {fileID: 9100000, guid: 34eab833f9333ec4e8506187548f1919, type: 2}
   _buyPrice: 0
   _sellPrice: 0

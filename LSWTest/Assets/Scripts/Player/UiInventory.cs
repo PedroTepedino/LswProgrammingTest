@@ -28,6 +28,7 @@ public class UiInventory : MonoBehaviour
         }
 
         InputManager.OnInventoryAction += OpenInventory;
+        InputManager.OnEscape += ListenOnEscape;
     }
 
     private void OnDisable()
@@ -38,6 +39,7 @@ public class UiInventory : MonoBehaviour
         }
 
         InputManager.OnInventoryAction -= OpenInventory;
+        InputManager.OnEscape -= ListenOnEscape;
     }
 
     public void OpenInventory()
@@ -57,6 +59,15 @@ public class UiInventory : MonoBehaviour
     private void ListenOnClothingSelected(ClothingPiece clothingPiece)
     {
         OnOutfitSelected?.Invoke(clothingPiece);
+    }
+
+    private void ListenOnEscape()
+    {
+        if (_uiVisualObject.activeInHierarchy)
+        {
+            _uiVisualObject.SetActive(false);
+            Time.timeScale = 1f;
+        }
     }
 
     private void UpdateUi(List<ClothingPiece> inventoryItems)

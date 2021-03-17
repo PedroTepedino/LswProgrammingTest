@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
 
     public static event Action OnInteract;
 
+    public static event Action OnEscape;
+
     private void Update()
     {
         if (Input.GetButtonDown("Inventory"))
@@ -19,6 +21,11 @@ public class InputManager : MonoBehaviour
         if(Input.GetButtonDown("Interact"))
         {
             OnInteract?.Invoke();
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            OnEscape?.Invoke();
         }
     }
 }
