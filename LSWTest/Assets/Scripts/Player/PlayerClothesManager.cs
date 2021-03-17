@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Linq;
 
 public class PlayerClothesManager : MonoBehaviour
 {
@@ -73,6 +74,14 @@ public class PlayerClothesManager : MonoBehaviour
     {
         _currentOutfit = clothing;
         OnCurrentOutfitChanged?.Invoke(_currentOutfit);
+    }
+
+    public void ChangeToValidOutfitIfNecessary()
+    {
+        if (!_clothingPieces.Contains(_currentOutfit))
+        {
+            ChangeClothes(_clothingPieces[0]);
+        }
     }
 
     public void AddItem(ClothingPiece item)

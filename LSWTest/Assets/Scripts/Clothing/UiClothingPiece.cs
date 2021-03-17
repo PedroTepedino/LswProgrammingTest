@@ -5,8 +5,9 @@ using System;
 public class UiClothingPiece : MonoBehaviour
 {
     [SerializeField] private ClothingPiece _clothingPiece;
-
     [SerializeField] private Image _icon;
+    [SerializeField] private Button _button;
+    [SerializeField] private GameObject _buttonInteractionCrossImage;
 
     public event Action<ClothingPiece> OnSelected;
 
@@ -22,6 +23,15 @@ public class UiClothingPiece : MonoBehaviour
         OnSelected?.Invoke(_clothingPiece);
     }
 
+    public void SetButtonInteractible(bool shouldInteract)
+    {
+        if (_button != null)
+        {
+            _button.interactable = shouldInteract;
+            _buttonInteractionCrossImage.SetActive(!shouldInteract);
+        }
+    }
+
     public void ChangeClothingPiece(ClothingPiece newClothingPiece)
     {
         _clothingPiece = newClothingPiece;
@@ -33,6 +43,11 @@ public class UiClothingPiece : MonoBehaviour
         if (_icon == null)
         {
             _icon = this.GetComponentInChildren<Image>();
+        }
+
+        if (_button == null)
+        {
+            _button = this.GetComponentInChildren<Button>();
         }
     }
 }

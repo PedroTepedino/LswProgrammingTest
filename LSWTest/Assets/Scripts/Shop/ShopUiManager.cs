@@ -41,6 +41,11 @@ public class ShopUiManager : MonoBehaviour
         OnOutfitSelected?.Invoke(outfit);
     }
 
+    public void ChangeButtonInteractionState(int index, bool shouldInteract)
+    {
+        _uiClothings[index].SetButtonInteractible(shouldInteract);
+    }
+
     public void UpdateUi(List<ClothingPiece> inventoryItems)
     {
         for (int i = 0; i < _uiClothings.Count; i++)
@@ -49,6 +54,7 @@ public class ShopUiManager : MonoBehaviour
             {
                 _uiClothings[i].gameObject.SetActive(true);
                 _uiClothings[i].ChangeClothingPiece(inventoryItems[i]);
+                _uiClothings[i].SetButtonInteractible(true);
             }
             else
             {

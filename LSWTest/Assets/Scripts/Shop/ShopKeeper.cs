@@ -9,6 +9,11 @@ public class ShopKeeper : MonoBehaviour, IShop
     [SerializeField] private ShopUiManager _sellUi;
     [SerializeField] private List<ClothingPiece> _availableClothes;
 
+    [SerializeField] private DialogBit _welcomeDialog;
+    [SerializeField] private DialogBit _buyDialog;
+    [SerializeField] private DialogBit _sellDialog;
+    [SerializeField] private DialogBit _overSellDialog;
+
     private PlayerClothesManager _player;
 
     public List<ClothingPiece> AvailableClothes => _availableClothes;
@@ -36,23 +41,26 @@ public class ShopKeeper : MonoBehaviour, IShop
         _buyUi.Open();
         _uiVisualObject.SetActive(true);
         Time.timeScale = 0f;
+
+        UiDialog.Instance.ShowSingleLine(_welcomeDialog);
     }
 
     public void Close()
     {
-        if (_player.ClothingPieces.Count == 1)
-        {
-            _player.ChangeClothes(_player.ClothingPieces[0]);
-        }
+        _player.ChangeToValidOutfitIfNecessary();
 
         _sellUi.Close();
         _buyUi.Close();
         _uiVisualObject.SetActive(false);
         Time.timeScale = 1f;
+
+        UiDialog.Instance.HideDialog();
     }
 
     public void Buy(ClothingPiece Item)
     {
+        UiDialog.Instance.ShowSingleLine(_buyDialog);
+
         _availableClothes.Remove(Item);
         _player.AddItem(Item);
         _buyUi.UpdateUi(_availableClothes);
@@ -62,8 +70,14 @@ public class ShopKeeper : MonoBehaviour, IShop
     public void Sell(ClothingPiece Item)
     {
         // the player should have at least one piece of clothing
-        if (_player.ClothingPieces.Count <= 1) return;
+        if (_player.ClothingPieces.Count <= 1)
+        {
+            UiDialog.Instance.ShowSingleLine(_overSellDialog);
+            _sellUi.ChangeButtonInteractionState(0, false);
+            return;
+        }
 
+        UiDialog.Instance.ShowSingleLine(_sellDialog);
         _availableClothes.Add(Item);
         _player.RemoveItem(Item);
         _buyUi.UpdateUi(_availableClothes);
