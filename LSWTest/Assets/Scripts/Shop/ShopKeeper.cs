@@ -25,7 +25,6 @@ public class ShopKeeper : MonoBehaviour, IShop
     {
         _buyUi.OnOutfitSelected -= Buy;
         _sellUi.OnOutfitSelected -= Sell;
-
     }
 
     public void Open(PlayerClothesManager player)
@@ -41,6 +40,11 @@ public class ShopKeeper : MonoBehaviour, IShop
 
     public void Close()
     {
+        if (_player.ClothingPieces.Count == 1)
+        {
+            _player.ChangeClothes(_player.ClothingPieces[0]);
+        }
+
         _sellUi.Close();
         _buyUi.Close();
         _uiVisualObject.SetActive(false);
@@ -57,6 +61,9 @@ public class ShopKeeper : MonoBehaviour, IShop
 
     public void Sell(ClothingPiece Item)
     {
+        // the player should have at least one piece of clothing
+        if (_player.ClothingPieces.Count <= 1) return;
+
         _availableClothes.Add(Item);
         _player.RemoveItem(Item);
         _buyUi.UpdateUi(_availableClothes);
