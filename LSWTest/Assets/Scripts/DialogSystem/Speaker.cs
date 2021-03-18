@@ -2,12 +2,19 @@
 
 public class Speaker : MonoBehaviour
 {
-    [SerializeField] private Dialog _dialog;
+    [SerializeField] private Dialog[] _dialog;
+
+    private int index = 0;
 
     public void Talk()
     {
-        if (_dialog == null) return;
+        if (_dialog.Length == 0) return;
 
-        UiDialog.Instance.ShowDialog(_dialog);
+        UiDialog.Instance.ShowDialog(_dialog[index]);
+        
+        index++;
+
+        if (index >= _dialog.Length)
+            index = 0;
     }
 }

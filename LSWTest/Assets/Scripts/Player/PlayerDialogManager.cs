@@ -27,10 +27,14 @@ public class PlayerDialogManager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == _speakerTarget.gameObject)
+        if (_speakerTarget != null)
         {
-            _speakerTarget = null;
-            _commandPopup.SetActive(false);
+            if (collision.gameObject == _speakerTarget.gameObject)
+            {
+                _speakerTarget = null;
+                _commandPopup.SetActive(false);
+            }
+            
         }
     }
 

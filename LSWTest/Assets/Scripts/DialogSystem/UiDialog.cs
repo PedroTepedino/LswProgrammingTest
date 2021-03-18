@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System;
 
 public class UiDialog : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class UiDialog : MonoBehaviour
     [SerializeField] private Image _speakerIcon;
     [SerializeField] private TextMeshProUGUI _dialogText;
     [SerializeField] private GameObject _mainVisualObject;
+
+    private PlayerClothesManager _playerInstance;
+
+    private Coroutine _ongoingDialog;
 
     private void Awake()
     {
@@ -27,6 +32,8 @@ public class UiDialog : MonoBehaviour
     private void OnEnable()
     {
         _mainVisualObject.SetActive(false);
+
+        _playerInstance = FindObjectOfType<PlayerClothesManager>();
     }
 
     public void ShowSingleLine(DialogBit bit)
@@ -42,7 +49,9 @@ public class UiDialog : MonoBehaviour
 
     public void ShowDialog(Dialog dialog)
     {
-        StartCoroutine(DialogInteraction(dialog));
+        if (_ongoingDialog != null) return;
+
+        _ongoingDialog = StartCoroutine(DialogInteraction(dialog));
     }
 
     private IEnumerator DialogInteraction(Dialog dialog)
@@ -61,11 +70,20 @@ public class UiDialog : MonoBehaviour
 
         _mainVisualObject.SetActive(false);
         Time.timeScale = 1f;
+        _ongoingDialog = null;
     }
 
     private void ChangeDialog(DialogBit bit)
     {
-        _speakerIcon.sprite = bit.Icon;
+        if (bit.PlayerBit)
+        {
+            _speakerIcon.sprite = _playerInstance.CurrentOutfit.Icon;
+        }
+        else
+        {
+            _speakerIcon.sprite = bit.Icon;
+        }
+
         _dialogText.text = bit.Dialog;
     }
 }

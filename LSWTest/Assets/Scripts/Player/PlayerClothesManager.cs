@@ -2,7 +2,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using System.Linq;
 
 public class PlayerClothesManager : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class PlayerClothesManager : MonoBehaviour
     public static event Action<List<ClothingPiece>> OnInventoryChanged;
 
     public List<ClothingPiece> ClothingPieces => _clothingPieces;
+    public ClothingPiece CurrentOutfit => _currentOutfit;
 
     private IShop _shopInRange = null;
 
