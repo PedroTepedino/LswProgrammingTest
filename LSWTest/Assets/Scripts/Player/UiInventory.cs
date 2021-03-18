@@ -42,29 +42,32 @@ public class UiInventory : MonoBehaviour
         InputManager.OnEscape -= ListenOnEscape;
     }
 
+    private void ListenOnClothingSelected(ClothingPiece clothingPiece)
+    {
+        OnOutfitSelected?.Invoke(clothingPiece);
+    }
+
     public void OpenInventory()
     {
         if (_uiVisualObject.activeInHierarchy)
         {
+            AudioManager.Instance.Play("Button");
             _uiVisualObject.SetActive(false);
             Time.timeScale = 1f;
         }
         else if (Time.timeScale > 0.1f)
         {
+            AudioManager.Instance.Play("Button");
             _uiVisualObject.SetActive(true);
             Time.timeScale = 0f;
         }
-    }
-
-    private void ListenOnClothingSelected(ClothingPiece clothingPiece)
-    {
-        OnOutfitSelected?.Invoke(clothingPiece);
     }
 
     private void ListenOnEscape()
     {
         if (_uiVisualObject.activeInHierarchy)
         {
+            AudioManager.Instance.Play("Button");
             _uiVisualObject.SetActive(false);
             Time.timeScale = 1f;
         }

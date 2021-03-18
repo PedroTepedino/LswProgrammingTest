@@ -41,6 +41,7 @@ public class PlayerDialogManager : MonoBehaviour
     {
         if (_speakerTarget != null)
         {
+            AudioManager.Instance.Play("Button");
             _speakerTarget.Talk();
         }
     }

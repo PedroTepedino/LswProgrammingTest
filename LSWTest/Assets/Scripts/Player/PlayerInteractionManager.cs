@@ -41,6 +41,7 @@ public class PlayerInteractionManager : MonoBehaviour
     {
         if (_interactionTarget != null)
         {
+            AudioManager.Instance.Play("Button");
             _interactionTarget.Interact();
         }
     }

@@ -100,6 +100,8 @@ public class PlayerClothesManager : MonoBehaviour
     {
         if (_shopInRange != null)
         {
+            AudioManager.Instance.Play("Button");
+
             if (Time.timeScale > 0.1f)
             {
                 _shopInRange.Open(this);

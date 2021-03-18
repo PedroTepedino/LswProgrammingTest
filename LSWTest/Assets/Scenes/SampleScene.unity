@@ -2879,7 +2879,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 33978718357365493, guid: 114038d4b0e70e04b82899b75b5fcc1d, type: 3}
-    m_PressedSprite: {fileID: -3398404699847443785, guid: 114038d4b0e70e04b82899b75b5fcc1d, type: 3}
+    m_PressedSprite: {fileID: -596989141680907126, guid: 114038d4b0e70e04b82899b75b5fcc1d, type: 3}
     m_SelectedSprite: {fileID: -550459873359513890, guid: 114038d4b0e70e04b82899b75b5fcc1d, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -5180,6 +5180,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4883d4f90e8939745a174634914ce7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &845974836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845974838}
+  - component: {fileID: 845974837}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &845974837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845974836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da858d450526e654e83a4dbf46b25bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - Id: Click
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Clip: {fileID: 8300000, guid: c65f5a28baa168d4bbcb020e7c0e345d, type: 3}
+    Source: {fileID: 0}
+  - Id: Rain
+    Volume: 0.276
+    Pitch: 1
+    Loop: 1
+    Clip: {fileID: 8300000, guid: 422a01e4a23540840b028a59d816ff20, type: 3}
+    Source: {fileID: 0}
+  - Id: Button
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Clip: {fileID: 8300000, guid: dfd742b227924bb4cb7c133c3d94c6da, type: 3}
+    Source: {fileID: 0}
+  - Id: OpenShop
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Clip: {fileID: 8300000, guid: 5a96e2c290c5f3941bd4b25879ef7e43, type: 3}
+    Source: {fileID: 0}
+  - Id: Thunder
+    Volume: 0.545
+    Pitch: 1
+    Loop: 0
+    Clip: {fileID: 8300000, guid: eb5c08ef9f0415147a27e5035b2d69ee, type: 3}
+    Source: {fileID: 0}
+--- !u!4 &845974838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845974836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &849827490
 GameObject:
   m_ObjectHideFlags: 0

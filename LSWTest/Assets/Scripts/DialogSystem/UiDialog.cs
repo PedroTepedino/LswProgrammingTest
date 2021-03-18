@@ -64,10 +64,10 @@ public class UiDialog : MonoBehaviour
         for (int i = 0; i < dialog.DialogBits.Length; i++)
         {
             yield return new WaitForEndOfFrame();
-
             ChangeDialog(dialog.DialogBits[i]);
-
+            
             yield return new WaitUntil(() => InputManager.Anykey);
+            AudioManager.Instance.Play("Click");
         }
 
         _mainVisualObject.SetActive(false);

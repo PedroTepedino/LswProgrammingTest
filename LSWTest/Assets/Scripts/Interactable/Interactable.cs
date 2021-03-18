@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        AudioManager.Instance.Play("Thunder");
         UiDialog.Instance.ShowDialog(_dialog);
     }
 }
