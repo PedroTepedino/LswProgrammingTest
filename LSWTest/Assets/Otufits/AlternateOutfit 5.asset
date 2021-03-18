@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c3a2b1fc8224e44b2065f62c4e2b26, type: 3}
+  m_Name: AlternateOutfit 5
+  m_EditorClassIdentifier: Assembly-CSharp::Clothe
+  _icon: {fileID: -1803275638383688583, guid: 68d3d5c7db130a9428654cffec64f3d5, type: 3}
+  _clothes: {fileID: 22100000, guid: 051f209a5eaa05f4188fad08ae8aac6c, type: 2}

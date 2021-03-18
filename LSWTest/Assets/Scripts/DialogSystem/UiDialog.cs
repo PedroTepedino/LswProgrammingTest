@@ -17,6 +17,8 @@ public class UiDialog : MonoBehaviour
 
     private Coroutine _ongoingDialog;
 
+    private WaitForEndOfFrame _waitForEndOfFrame = new WaitForEndOfFrame();
+
     private void Awake()
     {
         if (_instance != null)

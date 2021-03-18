@@ -34,7 +34,6 @@ public class PlayerDialogManager : MonoBehaviour
                 _speakerTarget = null;
                 _commandPopup.SetActive(false);
             }
-            
         }
     }
 

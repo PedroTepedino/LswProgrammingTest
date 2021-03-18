@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03c3a2b1fc8224e44b2065f62c4e2b26, type: 3}
-  m_Name: AlternateOutfit1
+  m_Name: AlternateOutfit 3
   m_EditorClassIdentifier: Assembly-CSharp::Clothe
-  _icon: {fileID: 7056647418414134465, guid: c941275441bb4444c8f371ec7e12c76d, type: 3}
-  _clothes: {fileID: 22100000, guid: 34369ccc2b3662b45b7ab4875f31b33e, type: 2}
-  _buyPrice: 0
-  _sellPrice: 0
+  _icon: {fileID: 1584421336319681493, guid: 68d3d5c7db130a9428654cffec64f3d5, type: 3}
+  _clothes: {fileID: 22100000, guid: 625358a634c8f504d871df2057328eef, type: 2}
