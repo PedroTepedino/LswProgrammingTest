@@ -7,6 +7,7 @@ public class UiInventory : MonoBehaviour
     [SerializeField] private List<UiClothingPiece> _uiClothingPieces;
 
     [SerializeField] private GameObject _uiVisualObject;
+    [SerializeField] private GameObject _menuObject;
 
     public static event Action<ClothingPiece> OnOutfitSelected;
 
@@ -53,12 +54,14 @@ public class UiInventory : MonoBehaviour
         {
             AudioManager.Instance.Play("Button");
             _uiVisualObject.SetActive(false);
+            _menuObject.SetActive(false);
             Time.timeScale = 1f;
         }
         else if (Time.timeScale > 0.1f)
         {
             AudioManager.Instance.Play("Button");
             _uiVisualObject.SetActive(true);
+            _menuObject.SetActive(true);
             Time.timeScale = 0f;
         }
     }
@@ -69,7 +72,15 @@ public class UiInventory : MonoBehaviour
         {
             AudioManager.Instance.Play("Button");
             _uiVisualObject.SetActive(false);
+            _menuObject.SetActive(false);
             Time.timeScale = 1f;
+        }
+        else if (Time.timeScale > 0.1f)
+        {
+            AudioManager.Instance.Play("Button");
+            _uiVisualObject.SetActive(true);
+            _menuObject.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 

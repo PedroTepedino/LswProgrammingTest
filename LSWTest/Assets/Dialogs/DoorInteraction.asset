@@ -15,6 +15,6 @@ MonoBehaviour:
   _dialogBits:
   - PlayerBit: 1
     Icon: {fileID: 0}
-    Dialog: 'I shoudn''t go out on this weather...
+    Dialog: 'I shoudn''t go out in this weather...
 
 '

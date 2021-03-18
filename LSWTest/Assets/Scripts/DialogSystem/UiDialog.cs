@@ -17,6 +17,8 @@ public class UiDialog : MonoBehaviour
 
     private Coroutine _ongoingDialog;
 
+    public static bool OnGoingDialog { get; private set; }
+
     private WaitForEndOfFrame _waitForEndOfFrame = new WaitForEndOfFrame();
 
     private void Awake()
@@ -58,21 +60,27 @@ public class UiDialog : MonoBehaviour
 
     private IEnumerator DialogInteraction(Dialog dialog)
     {
+        OnGoingDialog = true;
         Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
         _mainVisualObject.SetActive(true);
 
         for (int i = 0; i < dialog.DialogBits.Length; i++)
         {
-            yield return new WaitForEndOfFrame();
             ChangeDialog(dialog.DialogBits[i]);
-            
+
             yield return new WaitUntil(() => InputManager.Anykey);
             AudioManager.Instance.Play("Click");
+
+            yield return new WaitForSecondsRealtime(0.1f);
         }
 
         _mainVisualObject.SetActive(false);
         Time.timeScale = 1f;
         _ongoingDialog = null;
+        OnGoingDialog = false;
     }
 
     private void ChangeDialog(DialogBit bit)

@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
             sound.Source.volume = sound.Volume;
             sound.Source.pitch = sound.Pitch;
             sound.Source.loop = sound.Loop;
+            sound.Source.outputAudioMixerGroup = sound.Mixer;
         }
     }
 

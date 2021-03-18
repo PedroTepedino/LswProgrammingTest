@@ -119,6 +119,8 @@ public class PlayerClothesManager : MonoBehaviour
     {
         if (_shopInRange != null && _shopInRange.IsOpen)
         {
+            AudioManager.Instance.Play("Button");
+
             _shopInRange.Close();
         }
     }

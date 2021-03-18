@@ -39,7 +39,7 @@ public class PlayerDialogManager : MonoBehaviour
 
     private void ListenOnTalk()
     {
-        if (_speakerTarget != null)
+        if (_speakerTarget != null && !UiDialog.OnGoingDialog)
         {
             AudioManager.Instance.Play("Button");
             _speakerTarget.Talk();

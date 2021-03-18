@@ -18,4 +18,4 @@ MonoBehaviour:
     Dialog: Welcome to the shop!
   - PlayerBit: 0
     Icon: {fileID: -5086287864159764811, guid: c941275441bb4444c8f371ec7e12c76d, type: 3}
-    Dialog: Would you lilket to buy anything?
+    Dialog: Would you lilke to buy anything?

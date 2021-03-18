@@ -16,7 +16,7 @@ TextureImporter:
     second: GUI_3
   - first:
       213: 2802904198054408972
-    second: GUI_4
+    second: GUI_94
   - first:
       213: -9168193397101357998
     second: GUI_5
@@ -491,13 +491,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_4
+      name: GUI_94
       rect:
         serializedVersion: 2
-        x: 51
-        y: 243
-        width: 42
-        height: 10
+        x: 50
+        y: 242
+        width: 44
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 4, y: 0, z: 4, w: 0}
@@ -2368,7 +2368,7 @@ TextureImporter:
         width: 44
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 5, y: 0, z: 5, w: 0}
       outline: []
       physicsShape: []
