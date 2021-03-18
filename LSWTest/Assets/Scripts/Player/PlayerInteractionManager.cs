@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerInteractionManager : MonoBehaviour
 {
     [SerializeField] private GameObject _popUp;
+    [SerializeField] private Collider2D _collider2D;
 
     private IInteractable _interactionTarget;
 
@@ -16,25 +19,23 @@ public class PlayerInteractionManager : MonoBehaviour
         InputManager.OnInteract -= ListenOnInteract;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        _interactionTarget = collision.GetComponent<IInteractable>();
-        if (_interactionTarget != null)
-        {
-            _popUp.SetActive(true);
-        }
-    }
+        Collider2D[] colliders = new Collider2D[50];
+        var colliderCount = _collider2D.OverlapCollider((new ContactFilter2D()).NoFilter(), colliders);
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (_interactionTarget != null)
+        for (int i = 0; i < colliderCount; i++)
         {
-            if (collision.gameObject.GetComponent<IInteractable>() == _interactionTarget)
+            if (colliders[i].gameObject.CompareTag("Interactable"))
             {
-                _interactionTarget = null;
-                _popUp.SetActive(false);
+                _popUp.SetActive(true);
+                _interactionTarget = colliders[i].gameObject.GetComponent<IInteractable>();
+                return;
             }
         }
+
+        _popUp.SetActive(false);
+        _interactionTarget = null;
     }
 
     private void ListenOnInteract()
@@ -43,6 +44,15 @@ public class PlayerInteractionManager : MonoBehaviour
         {
             AudioManager.Instance.Play("Button");
             _interactionTarget.Interact();
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (_collider2D == null || !_collider2D.isTrigger)
+        {
+            List<Collider2D> colliders = new List<Collider2D> (this.GetComponents<Collider2D>());
+            _collider2D = colliders.Find(col => col.isTrigger);
         }
     }
 }

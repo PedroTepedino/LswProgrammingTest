@@ -3828,6 +3828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _popUp: {fileID: 1455610600}
+  _collider2D: {fileID: 452441332}
 --- !u!1001 &460819913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11522,7 +11523,7 @@ GameObject:
   - component: {fileID: 1761904129}
   m_Layer: 0
   m_Name: PHC_StoreC_1
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

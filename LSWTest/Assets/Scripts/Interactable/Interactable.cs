@@ -9,4 +9,12 @@ public class Interactable : MonoBehaviour, IInteractable
         AudioManager.Instance.Play("Thunder");
         UiDialog.Instance.ShowDialog(_dialog);
     }
+
+    private void OnValidate()
+    {
+        if (!this.gameObject.CompareTag("Interactable"))
+        {
+            this.gameObject.tag = "Interactable";
+        }
+    }
 }
